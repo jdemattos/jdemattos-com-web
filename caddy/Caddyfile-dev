@@ -1,0 +1,13 @@
+0.0.0.0
+
+root /var/www
+log stdout
+
+maxrequestbody 10KB
+gzip
+header / {
+    Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    X-XSS-Protection "1; mode=block"
+    X-Content-Type-Options "nosniff"
+    X-Frame-Options "DENY"
+}

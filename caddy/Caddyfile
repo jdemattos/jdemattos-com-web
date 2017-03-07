@@ -1,0 +1,20 @@
+jdemattos.com
+tls jamin@jdemattos.com
+
+root /var/www
+log /var/log/caddy/access.log {
+  rotate {
+    size 100
+    age 365
+    keep 10
+  }
+}
+
+maxrequestbody 10KB
+gzip
+header / {
+    Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    X-XSS-Protection "1; mode=block"
+    X-Content-Type-Options "nosniff"
+    X-Frame-Options "DENY"
+}

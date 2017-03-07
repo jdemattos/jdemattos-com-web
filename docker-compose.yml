@@ -1,0 +1,23 @@
+version: "3"
+services:
+  web:
+    container_name: caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - caddy-certs:/etc/caddy/certs
+      - caddy-log:/var/log/caddy
+    build:
+      context: .
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 10
+        window: 5s
+
+volumes:
+  caddy-certs:
+  caddy-log:
