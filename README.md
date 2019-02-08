@@ -1,31 +1,68 @@
 # jdemattos-com-web
-Frontend website for [jdemattos.com](https://jdemattos.com).
+Site for [jdemattos.com](https://jdemattos.com).
 
-# Requirements
-- [caddy](https://caddyserver.com/): For local development
-- [docker](https://www.docker.com/): For deployment
-- [docker-compose](https://github.com/docker/compose): For deployment
+# Dependencies
+- [caddy](https://caddyserver.com/): web server
+- [docker](https://www.docker.com/): container platform
+- [abiosoft/caddy](https://hub.docker.com/r/abiosoft/caddy/): caddy docker container
 
 # Usage
-## Local development
-The development server will be listening on 0.0.0.0:2015.
+## Getting the code
+Fetch configs and static web files for serving for the first time.
 
 ```bash
+cd ~
 git clone https://github.com/jdemattos/jdemattos-com-web.git
-cd jdemattos-com-web
-caddy -conf=caddy/Caddyfile-dev -root=www
 ```
 
-## Deploying staging docker containers
-The staging container will be listening on 0.0.0.0:2015.
+Or update the existing git repo.
 
 ```bash
-docker-compose -f docker-compose.dev.yml up --build
+cd ~/jdemattos-com-web
+git checkout master
+git pull origin master
 ```
 
-## Deploying production docker containers
-The production container will be listening on jdemattos.com:443 with TLS and :80 for redirects.
+> This README assumes the code lives in `~/jdemattos-com-web`.
+
+## Local development
+Run web server locally for development and listen on port `2015`.
 
 ```bash
-docker-compose up -d --build
+sudo docker run \
+    --detach \
+    --name caddy-jdemattos-com-dev \
+    --volume $HOME/jdemattos-com-web/caddy/Caddyfile-dev \
+    --volume $HOME/jdemattos-com-web/www:/srv \
+    --publish 2015:2015 \
+    abiosoft/caddy
+```
+
+Verify that the web server is running. (optional)
+
+```bash
+curl http://localhost:2015
+```
+
+Stop container and clean up when done. (optional)
+
+```bash
+sudo docker stop caddy-jdemattos-com-dev
+sudo docker rm --volumes caddy-jdemattos-com-dev
+```
+
+## Production deployment
+Run web server for production and listen on `https`. (`http` for redirects)
+
+```bash
+sudo docker run \
+    --detach \
+    --name caddy-jdemattos-com \
+    --restart always \
+    --volume $HOME/jdemattos-com-web/caddy/Caddyfile \
+    --volume $HOME/.caddy:/root/.caddy \
+    --volume $HOME/jdemattos-com-web/www:/srv \
+    --publish 80:80 \
+    --publish 443:443 \
+    abiosoft/caddy
 ```
