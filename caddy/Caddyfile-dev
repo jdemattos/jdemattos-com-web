@@ -1,6 +1,6 @@
 0.0.0.0
 
-maxrequestbody 10KB
+limits 2KB
 gzip
 header / {
     Strict-Transport-Security "max-age=31536000; includeSubDomains"
