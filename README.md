@@ -31,8 +31,8 @@ Run web server locally for development and listen on port `2015`.
 ```bash
 sudo docker run \
     --detach \
-    --name caddy-jdemattos-com-dev \
-    --volume $HOME/jdemattos-com-web/caddy/Caddyfile-dev \
+    --name jdemattos-com-web-dev \
+    --volume $HOME/jdemattos-com-web/caddy/Caddyfile-dev:/etc/Caddyfile \
     --volume $HOME/jdemattos-com-web/www:/srv \
     --publish 2015:2015 \
     abiosoft/caddy
@@ -57,12 +57,13 @@ Run web server for production and listen on `https`. (`http` for redirects)
 ```bash
 sudo docker run \
     --detach \
-    --name caddy-jdemattos-com \
+    --name jdemattos-com-web \
     --restart always \
-    --volume $HOME/jdemattos-com-web/caddy/Caddyfile \
-    --volume $HOME/.caddy:/root/.caddy \
+    --volume $HOME/jdemattos-com-web/caddy/Caddyfile:/etc/Caddyfile \
     --volume $HOME/jdemattos-com-web/www:/srv \
+    --volume $HOME/.caddy:/root/.caddy \
     --publish 80:80 \
     --publish 443:443 \
+    --env ACME_AGREE=true \
     abiosoft/caddy
 ```
