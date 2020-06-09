@@ -35,7 +35,7 @@ sudo docker run \
     --volume $HOME/jdemattos-com-web/caddy/Caddyfile-dev:/etc/Caddyfile \
     --volume $HOME/jdemattos-com-web/www:/srv \
     --publish 2015:2015 \
-    abiosoft/caddy
+    abiosoft/caddy:1.0.3
 ```
 
 Verify that the web server is running. (optional)
@@ -65,5 +65,5 @@ sudo docker run \
     --publish 80:80 \
     --publish 443:443 \
     --env ACME_AGREE=true \
-    abiosoft/caddy
+    abiosoft/caddy:1.0.3
 ```
