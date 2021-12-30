@@ -1,0 +1,30 @@
+{
+	admin off
+	email jamin@jdemattos.com
+}
+
+jdemattos.com
+
+file_server {
+	root /srv/static
+}
+
+encode {
+	gzip
+	zstd
+}
+
+header {
+	# enable HSTS
+	Strict-Transport-Security max-age=31536000; includeSubDomains
+
+	# disable clients from sniffing the media type
+	X-Content-Type-Options nosniff
+
+	# clickjacking protection
+	X-Frame-Options DENY
+}
+
+request_body {
+	max_size 2kb
+}
