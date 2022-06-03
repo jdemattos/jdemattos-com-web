@@ -41,7 +41,7 @@ docker run --detach --restart unless-stopped \
   caddy run
 
 # OPTIONAL: verify that the web server is working
-curl https://jdemattos.com --resolve jdemattos.com:localhost
+curl https://jdemattos.com --resolve jdemattos.com:443:127.0.0.1
 
 # OPTIONAL: clean up
 docker stop caddy
