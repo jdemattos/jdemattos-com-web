@@ -41,10 +41,10 @@
                 <h3>Where you can find me</h3>
                 <ul class="contact">
                     <li>
-                        <a class="my-email-mailto" href="#">
+                        <a class="my-email-mailto" href="#" aria-label="Email address">
                             <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle-thin fa-stack-2x"></i>
-                                <i class="fa fa-at fa-stack-1x"></i>
+                                <i aria-hidden="true" class="fa fa-circle-thin fa-stack-2x"></i>
+                                <i aria-hidden="true" class="fa-solid fa-at fa-stack-1x"></i>
                             </span>
 
                             <span class="my-email">...@...</span>
@@ -53,8 +53,8 @@
                     <li>
                         <a href="https://www.linkedin.com/in/jamindemattos">
                             <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle-thin fa-stack-2x"></i>
-                                <i class="fa fa-linkedin fa-stack-1x"></i>
+                                <i aria-hidden="true" class="fa fa-circle-thin fa-stack-2x"></i>
+                                <i aria-hidden="true" class="fa-brands fa-linkedin fa-stack-1x"></i>
                             </span>
 
                             linkedin.com/in/jamindemattos
@@ -63,8 +63,8 @@
                     <li>
                         <a href="https://github.com/jdemattos">
                             <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle-thin fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x"></i>
+                                <i aria-hidden="true" class="fa fa-circle-thin fa-stack-2x"></i>
+                                <i aria-hidden="true" class="fa-brands fa-github fa-stack-1x"></i>
                             </span>
 
                             github.com/jdemattos
@@ -100,24 +100,22 @@
     </main>
 
     <footer>
-        jdemattos.com &copy; 2017-2022
+        jdemattos.com &copy; 2017-2025
     </footer>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:300" rel="stylesheet">
-    <script src="https://use.fontawesome.com/f7b5b38a65.js"></script>
-    <script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script integrity="sha256-u3kROlkHvkNSvJjkEoYDXUVWNy3zNWsW5EQXqPGn6F8=" crossorigin="anonymous">
         (function () {
-            var email = atob('amFtaW5AamRlbWF0dG9zLmNvbQ==');
-            Array.prototype.forEach.call(
-                document.getElementsByClassName('my-email'),
-                function (el) {
-                    el.innerHTML = email;
-                })
-            Array.prototype.forEach.call(
-                document.getElementsByClassName('my-email-mailto'),
-                function (el) {
-                    el.href = "mailto:" + email;
-                })
+            const email = atob('amFtaW5AamRlbWF0dG9zLmNvbQ==');
+
+            document.querySelectorAll('.my-email').forEach(el => {
+                el.innerHTML = email;
+            });
+
+            document.querySelectorAll('.my-email-mailto').forEach(el => {
+                el.href = `mailto:${email}`;
+            });
         }());
     </script>
 </body>
